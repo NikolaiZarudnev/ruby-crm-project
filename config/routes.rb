@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "products#index"
+  get 'search', to: 'categories#search'
 
-  resources :products
+  resource :search
+  resource :session, only: %i[new create destroy]
   resources :users
+  resources :products
+  
 end
