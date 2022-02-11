@@ -1,0 +1,8 @@
+<div class="" id=""> <%= @product.title %> </div>
+
+<div class="">
+  <%= @product.description %>
+  <%= image_tag(@product.image, alt: "", class: "") %>
+</div>
+
+<%= link_to "Back", products_path, class: "", id: "" %>
