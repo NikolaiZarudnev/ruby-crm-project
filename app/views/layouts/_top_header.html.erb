@@ -1,0 +1,37 @@
+<div class="top-header">
+  <div class="container">
+    <div class="top-header_main">
+      <div class="col-md-6 top-header-left">
+        <div class="drop">
+          <div class="btn-group">
+            <% if user_signed_in?() %>
+              <div class="" id=""><%= current_user.name %></div><br>
+              <div class="">
+                <%= link_to 'LOG OUT', session_path, data: { method: :delete }, class: "" %>
+              </div>
+            <% else %>
+                <p class="" id="">Guest</p><br>
+                <div class="">
+                  <%= link_to 'SIGN UP', new_user_path, class: "" %>
+                  <%= link_to 'LOG IN', new_session_path, class: "" %>
+                </div>
+            <% end %>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="col-md-6 top-header-left">
+        <div class="cart box_1">
+
+          <a href="/cart" onclick="getCart(); return false;">
+            <div class="total">
+
+            </div>
+          </a>
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/top_header' %>
+
+    <div class="">
+      <%= link_to root_path do %>
+        <h1>Marketplace</h1>
+      <% end %>
+    </div>>
+
+    <div class="content">
+      <%= yield %>
+    </div>
   </body>
 </html>
