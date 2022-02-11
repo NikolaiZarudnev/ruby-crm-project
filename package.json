@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@rails/webpacker": "5.4.3",
+    "rails_admin": "3.0.0-rc",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
