@@ -5,14 +5,23 @@ class Ability
   def initialize(user)
     # for any visitor or user
     can :read, Product
+    can :manage, :all
     #user ||= User.new # guest user (not logged in)
     if user
+      can :manage, :all
       if user.admin?
         # admins can do any action on any model or action
         can :manage, :all
+        #can :access, :rails_admin       # only allow admin users to access Rails Admin
+        #can :read, :dashboard           # allow access to dashboard
       else
         # regular users can read all content
         can :read, :all
+        # and edit, update and destroy their own user only
+        can [:edit, :destroy], User, id: user.id
+        can [:create], User, saler: true
+        # but cannot read hidden articles
+        cannot :read, Product, hidden: true
       end
     else
       # only unlogged visitors can visit a sign_up page:

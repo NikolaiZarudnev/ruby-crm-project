@@ -18,7 +18,7 @@
     </p>
     <p>
         <%= form.label :name %><br>
-        <%= form.text_field :name, class: "" %>
+        <%= form.text_field :name, :required=>true, class: "" %>
     </p>
     <p>
       <%= form.label :password %><br>
@@ -27,6 +27,10 @@
     <p>
       <%= form.label :password_confirmation %><br>
       <%= form.password_field :password_confirmation, :required=>true, class: "" %>
+    </p>
+    <p>
+      <%= form.label "I am salesman" %><br>
+      <%= form.check_box :sales, class: "" %>
     </p>
     <p>
       <%= form.submit class: "" %>
