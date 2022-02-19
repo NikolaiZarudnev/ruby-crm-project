@@ -4,17 +4,11 @@
       <div class="col-md-6 top-header-left">
         <div class="drop">
           <div class="btn-group">
-            <% if user_signed_in?() %>
-              <div class="" id=""><%= current_user.name %></div><br>
-              <div class="">
-                <%= link_to 'LOG OUT', session_path, data: { method: :delete }, class: "" %>
-              </div>
+            <% if user_signed_in? %>
+              <span>Здравствуйте, <%= current_user.email %></span>
+              <%= link_to 'Выйти', destroy_user_session_path, data: { method: :delete } %>
             <% else %>
-                <p class="" id="">Guest</p><br>
-                <div class="">
-                  <%= link_to 'SIGN UP', new_user_path, class: "" %>
-                  <%= link_to 'LOG IN', new_session_path, class: "" %>
-                </div>
+              <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
             <% end %>
           </div>
           <div class="clearfix"></div>
