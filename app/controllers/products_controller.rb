@@ -8,46 +8,46 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @product = @user.products.find(params[:id])
+    @supplier = Supplier.find_by(user_id: current_user.id)
+    @product = @supplier.products.find(params[:id])
   end
 
   def new
-    @user = User.find(params[:user_id])
+    @supplier = Supplier.find_by(user_id: current_user.id)
     @product = Product.new
   end
 
   def edit
-    @user = User.find(params[:user_id])
-    @product = @user.products.find(params[:id])
+    @supplier = Supplier.find_by(user_id: current_user.id)
+    @product = @supplier.products.find(params[:id])
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @supplier = Supplier.find_by(user_id: current_user.id)
     if params['product']['image'].nil? then params['product']['image'] = 'none.jpg'
     else
       image_load
     end
-    @product = @user.products.create(product_params)
-    redirect_to user_path(@user)
+    @product = @supplier.products.create(product_params)
+    redirect_to supplier_path(@supplier)
   end
 
   def update
-    @user = User.find(params[:user_id])
-    @product = @user.products.find(params[:id])
+    @supplier = Supplier.find_by(user_id: current_user.id)
+    @product = @supplier.products.find(params[:id])
 
     image_load unless params['product']['image'].nil?
 
     @product.update(product_params)
 
-    redirect_to user_path(@user)
+    redirect_to supplier_path(@supplier)
   end
 
   def destroy
-    @user = User.find(params[:user_id])
-    @product = @user.products.find(params[:id])
+    @supplier = Supplier.find_by(user_id: current_user.id)
+    @product = @supplier.products.find(params[:id])
     @product.destroy
-    redirect_to user_path(@user)
+    redirect_to supplier_path(@supplier)
   end
 
   private

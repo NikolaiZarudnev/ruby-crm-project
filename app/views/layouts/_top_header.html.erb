@@ -7,22 +7,22 @@
             <% if user_signed_in? %>
               <span>Здравствуйте, <%= current_user.email %></span>
               <%= link_to 'Выйти', destroy_user_session_path, data: { method: :delete } %>
+              <% if can? :create, Product %>
+                <%= link_to 'Мои товары', supplier_path(@supplier) %>
+              <% else %>
+                <%= link_to 'Стать продавцом', new_supplier_path %>
+              <%end%>
             <% else %>
               <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
             <% end %>
+
+          <form action="/search", class="">
+              <input name="q" type="text" placeholder="Поиск" aria-label="Поиск", class="">
+              <button type="submit", class="", id="">Поиск</button>
+          </form>
+
           </div>
           <div class="clearfix"></div>
-        </div>
-      </div>
-      <div class="col-md-6 top-header-left">
-        <div class="cart box_1">
-
-          <a href="/cart" onclick="getCart(); return false;">
-            <div class="total">
-
-            </div>
-          </a>
-          <div class="clearfix"> </div>
         </div>
       </div>
       <div class="clearfix"> </div>

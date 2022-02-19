@@ -1,0 +1,32 @@
+<div class="">Список товаров</div>
+<div class="" id="">
+<div class="">
+    <div class="">
+      <div class="">
+        <%@products.each do |product| %>
+          <div class="">
+            <div class="">
+                <%= link_to product_path(product) do %>
+                  <span><%=product.title%><%= image_tag(product.image, alt: "", class: "") %></span>
+                <% end %>
+            </div>
+            <% if can? [:update, :destroy], product %>
+              <%= link_to 'Редактировать', edit_product_path(product), class: ""%>
+              <%= button_to 'Удалить товар', product, class: "",
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' }, remote: true %>
+            <%end%>
+          </div>
+        <% end %>
+        <div class=""></div>
+      </div>
+    </div>
+  </div>
+</div>
+<%if can? :create, Product%>
+<div class="">
+
+  <%= link_to 'Добавить товар', new_product_path, class: "" %>
+  
+</div>
+<%end%>

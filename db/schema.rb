@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_19_024422) do
+ActiveRecord::Schema.define(version: 2022_02_19_170737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,19 @@ ActiveRecord::Schema.define(version: 2022_02_19_024422) do
     t.string "description"
     t.string "image"
     t.boolean "hidden"
+    t.bigint "supplier_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "price"
+    t.index ["supplier_id"], name: "index_products_on_supplier_id"
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string "company"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_products_on_user_id"
+    t.index ["user_id"], name: "index_suppliers_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,10 +40,10 @@ ActiveRecord::Schema.define(version: 2022_02_19_024422) do
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "admin"
-    t.boolean "sales"
-    t.boolean "operator"
-    t.boolean "customer"
+    t.boolean "is_admin"
+    t.boolean "is_supplier"
+    t.boolean "is_operator"
+    t.boolean "is_customer"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -44,5 +53,6 @@ ActiveRecord::Schema.define(version: 2022_02_19_024422) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "products", "users"
+  add_foreign_key "products", "suppliers"
+  add_foreign_key "suppliers", "users"
 end

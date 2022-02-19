@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :description
       t.string :image
       t.boolean :hidden
-      t.belongs_to :user, index: true, foreign_key: true
+      t.references :supplier, null: false, foreign_key: true
       t.timestamps
     end
   end
