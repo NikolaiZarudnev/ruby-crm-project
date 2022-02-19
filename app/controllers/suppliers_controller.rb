@@ -10,6 +10,7 @@ class SuppliersController < ApplicationController
     
       def show
         @supplier = Supplier.find(params[:id])
+        @products = @supplier.products
       end
     
       def new
@@ -21,9 +22,13 @@ class SuppliersController < ApplicationController
       end
     
       def create
-        current_user.is_supplier = true
-        @supplier = Supplier.create(user: current_user)
-        redirect_to root_path
+        @user = current_user
+        @user.is_supplier = true
+        @supplier = Supplier.create(user: @user)
+        @supplier.company = params['supplier']['company']
+        @user.save
+        supplier_save
+        #redirect_to root_path
       end
     
       def update

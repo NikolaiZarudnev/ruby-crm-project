@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   root "home#index"
   get 'search', to: 'products#search'
 
-  resources :suppliers
   resource :search
   resources :products
-  
+  resources :suppliers do
+    resources :products
+  end
 end

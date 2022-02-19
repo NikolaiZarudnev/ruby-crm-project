@@ -4,5 +4,5 @@
   <%= @product.description %>
   <%= image_tag(@product.image, alt: "", class: "") %>
 </div>
-
-<%= link_to "Back", products_path, class: "", id: "" %>
+<%= button_to "Buy", '', class: "", id: "" %>
+<%= link_to "Back", root_path, class: "", id: "" %>
