@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   get 'search', to: 'products#search'
 
   resource :search
-  resources :products
+  
+  resources :products do
+    resources :orders
+  end
+
   resources :suppliers do
     resources :products
   end
