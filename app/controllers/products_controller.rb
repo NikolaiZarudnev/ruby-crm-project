@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    #@supplier = Supplier.find_by(user_id: current_user.id)
+    # @supplier = Supplier.find_by(user_id: current_user.id)
     @product = Product.find(params[:id])
   end
 

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :supplier do
-    company { "MyString" }
+    company { 'MyString' }
   end
 end
