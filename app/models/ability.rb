@@ -4,8 +4,8 @@ class Ability
   include CanCan::Ability
   def initialize(user)
     # for any visitor or user
-    can :read, Product
-    can :manage, :all
+    can :read, Product, hidden: true
+    #can :manage, :all
     #user ||= User.new # guest user (not logged in)
     #can :access, :rails_admin       # only allow admin users to access Rails Admin
     #can :read, :dashboard           # allow access to dashboard
@@ -13,17 +13,19 @@ class Ability
       if user.is_admin?
         # admins can do any action on any model or action
         can :manage, :all
-        can :access, :rails_admin       # only allow admin users to access Rails Admin
-        can :read, :dashboard           # allow access to dashboard
+        #can :access, :rails_admin       # only allow admin users to access Rails Admin
+        #can :read, :dashboard           # allow access to dashboard
       elsif user.is_supplier?
         can [:update, :destroy], Product, hidden: false  # allow sales to only update visible products
         can :create, Product
       elsif user.is_operator?
-        can :manage, [User, Product]  # allow managers to do anything to products and users
+        can :manage, [User, Product]  # allow is_operators to do anything to products and users
+        can :access, :rails_admin       # only allow admin users to access Rails Admin
+        can :read, :all 
       else
         # regular users can read all content
         can :read, :all
-        # but cannot read hidden articles
+        # but cannot read hidden
         cannot :read, Product, hidden: true
       end
     else
