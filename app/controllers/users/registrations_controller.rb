@@ -11,7 +11,7 @@ module Users
     end
 
     def create
-      @user = User.new(params.require(:user).permit!)
+      @user = User.new(params.require(:user).permit(:email, :name, :password, :password_confirmation, :phone_number))
       if @user.save
         sign_in @user
         redirect_to root_path
