@@ -8,22 +8,22 @@ class ProductsController < ApplicationController
   end
 
   def show
-    # @supplier = Supplier.find_by(user_id: current_user.id)
     @product = Product.find(params[:id])
+    @supplier = Supplier.find(params[:supplier_id])
   end
 
   def new
-    @supplier = Supplier.find_by(user_id: current_user.id)
+    @supplier = Supplier.find(params[:supplier_id])
     @product = Product.new
   end
 
   def edit
-    @supplier = Supplier.find_by(user_id: current_user.id)
+    @supplier = Supplier.find(params[:supplier_id])
     @product = @supplier.products.find(params[:id])
   end
 
   def create
-    @supplier = Supplier.find_by(user_id: current_user.id)
+    @supplier = Supplier.find(params[:supplier_id])
     if params['product']['image'].nil? then params['product']['image'] = 'none.jpg'
     else
       image_load
@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @supplier = Supplier.find_by(user_id: current_user.id)
+    @supplier = Supplier.find(params[:supplier_id])
     @product = @supplier.products.find(params[:id])
 
     image_load unless params['product']['image'].nil?
@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @supplier = Supplier.find_by(user_id: current_user.id)
+    @supplier = Supplier.find(params[:supplier_id])
     @product = @supplier.products.find(params[:id])
     @product.destroy
     redirect_to supplier_path(@supplier)

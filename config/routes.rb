@@ -12,11 +12,13 @@ Rails.application.routes.draw do
 
   resource :search
 
-  resources :products do
-    resources :orders
+  resources :user do
+    resource :supplier
   end
 
   resources :suppliers do
-    resources :products
+    resources :products do
+      resources :orders
+    end
   end
 end

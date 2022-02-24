@@ -4,5 +4,11 @@
   <%= @product.description %>
   <%= image_tag(@product.image, alt: "", class: "") %>
 </div>
-<%= link_to "Buy", new_product_order_path(@product, @product.orders.build), class: "", id: "" %>
+<% if can? [:update, :destroy], @product %>
+                <%= link_to 'Редактировать', edit_supplier_product_path(@product), class: ""%>
+                <%= link_to 'Удалить', supplier_product_path(@product.supplier, @product), id: "",
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' }, remote: true %>
+              <%end%>
+<%= link_to "Buy", new_supplier_product_order_path(@product.supplier_id, @product, @product.orders.build), class: "", id: "" %>
 <%= link_to "Back", root_path, class: "", id: "" %>

@@ -1,13 +1,4 @@
 class SuppliersController < ApplicationController
-  def index
-    # @suppliers = Supplier.all
-  end
-
-  def search
-    @products = Product.all
-    @products = @products.where('title LIKE ?', "%#{params[:q]}%")
-  end
-
   def show
     @supplier = Supplier.find(params[:id])
     @products = @supplier.products
@@ -28,18 +19,11 @@ class SuppliersController < ApplicationController
     @supplier.company = params['supplier']['company']
     @user.save
     supplier_save
-    # redirect_to root_path
   end
 
   def update
     @supplier = Supplier.find(params[:id])
     supplier_update
-  end
-
-  def destroy
-    @supplier = Supplier.find(params[:id])
-    @supplier.destroy
-    redirect_to suppliers_path
   end
 
   private

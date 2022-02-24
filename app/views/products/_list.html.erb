@@ -7,13 +7,13 @@
           <% if can? :read, product %>
             <div class="">
               <div class="">
-                  <%= link_to product_path(product) do %>
+                  <%= link_to supplier_product_path(product.supplier, product) do %>
                     <span><%=product.title%><%= image_tag(product.image, alt: "", class: "") %></span>
                   <% end %>
               </div>
               <% if can? [:update, :destroy], product %>
-                <%= link_to 'Редактировать', edit_product_path(product), class: ""%>
-                <%= button_to 'Удалить товар', product, class: "",
+                <%= link_to 'Редактировать', edit_supplier_product_path(@supplier, product), class: ""%>
+                <%= link_to 'Удалить', [@supplier, product], id: "",
                             method: :delete,
                             data: { confirm: 'Are you sure?' }, remote: true %>
               <%end%>

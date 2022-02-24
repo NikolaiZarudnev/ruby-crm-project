@@ -1,1 +1,21 @@
-<%= render 'products/list' %>
+<div class="">Список товаров</div>
+<div class="" id="">
+<div class="">
+    <div class="">
+      <div class="">
+        <%@products.each do |product| %>
+          <% if can? :read, product %>
+            <div class="">
+              <div class="">
+                  <%= link_to supplier_product_path(product.supplier_id, product) do %>
+                    <span><%=product.title%><%= image_tag(product.image, alt: "", class: "") %></span>
+                  <% end %>
+              </div>
+            </div>
+          <%end%>
+        <% end %>
+        <div class=""></div>
+      </div>
+    </div>
+  </div>
+</div>
