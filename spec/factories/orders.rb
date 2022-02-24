@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order do
-    user { nil }
-    product { nil }
+    user { create(:user) }
+    product { create(:product) }
     count_product { 1 }
   end
 end

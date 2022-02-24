@@ -6,7 +6,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'spec/**/*_spec.rb'
-    - 'spec/*.rb'
+    - 'spec/**/**.rb'
     - 'bin/**'
     - 'config/initializers/devise.rb'
     - 'db/schema.rb'
