@@ -8,7 +8,7 @@
               <span>Здравствуйте, <%= current_user.name %></span>
               <%= link_to 'Выйти', destroy_user_session_path, data: { method: :delete } %>
               <% if current_user.is_supplier? %>
-                <%= link_to 'Мои товары', supplier_path(current_user.id) %>
+                <%= link_to 'Мои товары', supplier_path(current_user.supplier) %>
               <% else %>
                 <%= link_to 'Стать продавцом', new_supplier_path %>
               <%end%>

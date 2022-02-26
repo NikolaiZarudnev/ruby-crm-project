@@ -4,23 +4,12 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
-  def show
-    @order = Order.find(params[:id])
-  end
-
   def create
     @product = Product.find(params[:product_id])
     @order = @product.orders.create(order_params)
     @order.user_id = current_user.id
     order_save
   end
-
-  def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
-    redirect_to orders_path
-  end
-
   private
 
   def order_params
