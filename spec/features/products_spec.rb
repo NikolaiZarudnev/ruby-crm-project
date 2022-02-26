@@ -4,7 +4,6 @@ require 'rails_helper'
 require 'spec_helper'
 describe '#Product', type: :feature do
   before do
-    #@user = 
     @supplier = build(:supplier, user: create(:user, email: 'user1@gmail.com', password: 'password', name: 'User1', is_supplier: true))
     @supplier.id = @supplier.user_id
     @supplier.save
