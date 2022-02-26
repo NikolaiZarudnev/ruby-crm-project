@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
     @order.user_id = current_user.id
     order_save
   end
+
   private
 
   def order_params
